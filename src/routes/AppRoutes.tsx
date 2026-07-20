@@ -4,6 +4,8 @@ import Layout from "../components/Layout/Layout";
 import MyBlog from "../pages/MyBlog/MyBlog";
 import AddBlog from "../pages/AddBlog/AddBlog";
 import Login from "../pages/Login/Login";
+import Signup from "../pages/Signup/Signup";
+
 
 function AppRoutes () {
     return (
@@ -14,6 +16,7 @@ function AppRoutes () {
                 <Route path="my-blog" element={<MyBlog />}/>
             </Route>
             <Route path="/login" element={<Login />}/>
+            <Route path="/signup" element={<Signup />}/>
         </Routes>
     )
 }
