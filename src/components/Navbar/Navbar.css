@@ -24,10 +24,16 @@
 }
 
 .navbar a:hover{
-    color:#60a5fa;
+    color:#519fff;
 }
 
 .navbar .active {
-    color: rgb(53, 245, 53);
+    color:#519fff;
     font-weight: bold;
+}
+
+.navbar .logout {
+    color: hwb(0 30% 0%);
+    font-weight: bold;
+    
 }

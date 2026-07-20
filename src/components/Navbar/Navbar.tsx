@@ -21,6 +21,10 @@ function Navbar() {
           <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/my-blog">My Blogs</NavLink>
         </li>
 
+        <li>
+          <NavLink className='logout' to="/my-blog">Log Out</NavLink>
+        </li>
+
       </ul>
 
     </nav>
