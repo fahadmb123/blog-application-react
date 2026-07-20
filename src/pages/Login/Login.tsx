@@ -1,5 +1,5 @@
 import './Login.css'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -31,7 +31,7 @@ function Login() {
 
         <p className="bottom-text">
           Don't have an account?
-          <NavLink  to="/signup"> Sign Up</NavLink>
+          <Link  to="/signup"> Sign Up</Link>
         </p>
 
       </div>
