@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
@@ -10,15 +10,15 @@ function Navbar() {
       <ul>
 
         <li>
-          <Link to="/">Home</Link>
+          <NavLink to="/">Home</NavLink>
         </li>
 
         <li>
-          <Link to="/add-blog">Add Blog</Link>
+          <NavLink to="/add-blog">Add Blog</NavLink>
         </li>
 
         <li>
-          <Link to="/my-blog">My Blogs</Link>
+          <NavLink to="/my-blog">My Blogs</NavLink>
         </li>
 
       </ul>
