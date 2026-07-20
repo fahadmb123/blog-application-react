@@ -5,7 +5,7 @@ import MyBlog from "../pages/MyBlog/MyBlog";
 import AddBlog from "../pages/AddBlog/AddBlog";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
-
+import Error from "../pages/Error/Error";
 
 function AppRoutes () {
     return (
@@ -17,6 +17,7 @@ function AppRoutes () {
             </Route>
             <Route path="/login" element={<Login />}/>
             <Route path="/signup" element={<Signup />}/>
+            <Route path="*" element={<Error />}/>
         </Routes>
     )
 }
