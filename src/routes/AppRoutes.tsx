@@ -11,6 +11,7 @@ function AppRoutes () {
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />}/>
                 <Route path="add-blog" element={<AddBlog />}/>
+                <Route path="my-blog" element={<MyBlog />}/>
             </Route>
         </Routes>
     )
