@@ -12,9 +12,7 @@ function AddBlog() {
           placeholder="Blog Title"
         />
 
-        <textarea
-          placeholder="Write your blog..."
-        ></textarea>
+        <textarea placeholder="Write your blog..."></textarea>
 
         <button>Add Blog</button>
 
