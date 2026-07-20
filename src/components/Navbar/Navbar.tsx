@@ -10,15 +10,15 @@ function Navbar() {
       <ul>
 
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink className={({isActive})=>(isActive? 'active' : '')} to="/" end >Home</NavLink>
         </li>
 
         <li>
-          <NavLink to="/add-blog">Add Blog</NavLink>
+          <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/add-blog">Add Blog</NavLink>
         </li>
 
         <li>
-          <NavLink to="/my-blog">My Blogs</NavLink>
+          <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/my-blog">My Blogs</NavLink>
         </li>
 
       </ul>
