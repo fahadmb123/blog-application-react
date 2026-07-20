@@ -3,7 +3,7 @@ import Home from "../pages/Home/Home";
 import Layout from "../components/Layout/Layout";
 import MyBlog from "../pages/MyBlog/MyBlog";
 import AddBlog from "../pages/AddBlog/AddBlog";
-
+import Login from "../pages/Login/Login";
 
 function AppRoutes () {
     return (
@@ -13,6 +13,7 @@ function AppRoutes () {
                 <Route path="add-blog" element={<AddBlog />}/>
                 <Route path="my-blog" element={<MyBlog />}/>
             </Route>
+            <Route path="/login" element={<Login />}/>
         </Routes>
     )
 }
