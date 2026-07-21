@@ -3,6 +3,14 @@ import type { User } from "../types/auth";
 
 
 
-export function signup(user:User){
+export function SignupUser(newUser:User){
     
+    
+    //
+    //
+    //
+    //
+    //
+    console.log(newUser)
+
 }

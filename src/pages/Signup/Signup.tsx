@@ -4,18 +4,19 @@ import {useForm} from "react-hook-form"
 import type {SignupFormData } from "../../validation/authSchema";
 import { signupSchema } from "../../validation/authSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { SignupUser } from "../../services/AuthService";
+import { useUserContext } from "../../context/AuthContext";
 
 function Signup() {
   const {register,handleSubmit,formState:{errors}} = useForm<SignupFormData>({
     resolver : zodResolver(signupSchema),mode : "onChange"
   })
+  const {user,setUser} = useUserContext()
 
   
 
   function onSubmit(data:SignupFormData) {
-    console.log(data)
-    
+    SignupUser(data)
   }
   return (
     <div className="signup-container">
