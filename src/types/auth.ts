@@ -1,5 +1,17 @@
+import type { Dispatch, ReactNode, SetStateAction } from "react";
+
+
 export type User = {
     name : string,
     email : string,
     password : string
+}
+
+export type UserProviderProps = {
+  children: ReactNode;
+};
+
+export type UserContextType = {
+    user:User | undefined,
+    setUser:Dispatch<SetStateAction<User | undefined>>
 }
