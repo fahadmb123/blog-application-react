@@ -67,3 +67,11 @@
     color:#2563eb;
     font-weight:bold;
 }
+
+.login-card .errorMessage {
+    color: red;
+    text-align: left;
+    font-size: 14px;
+    margin-top: -12px;
+    margin-bottom: 0;
+}

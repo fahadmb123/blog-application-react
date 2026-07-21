@@ -1,7 +1,21 @@
+import { useForm } from 'react-hook-form';
 import './Login.css'
 import { Link } from 'react-router-dom';
+import { loginSchema, type LoginFormData } from '../../validation/authSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+
+
 
 function Login() {
+  const {register,handleSubmit,formState:{errors}} = useForm<LoginFormData>({
+    resolver : zodResolver(loginSchema),mode : "onChange"
+  })
+
+
+  function onSubmit(data:LoginFormData) {
+    console.log(data)
+  }
   return (
     <div className="login-container">
 
@@ -11,17 +25,19 @@ function Login() {
 
         <p>Login to continue</p>
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
 
-          <input
+          <input {...register("email")}
             type="email"
             placeholder="Enter your email"
           />
+          {errors.email && (<p className="errorMessage">{errors.email?.message}</p>)}
 
-          <input
+          <input {...register("password")}
             type="password"
             placeholder="Enter your password"
           />
+          {errors.password && (<p className="errorMessage">{errors.password?.message}</p>)}
 
           <button type="submit">
             Login
