@@ -3,18 +3,19 @@ import { Link } from "react-router-dom";
 import {useForm} from "react-hook-form"
 import type {SignupFormData } from "../../validation/authSchema";
 import { signupSchema } from "../../validation/authSchema";
-import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 
 function Signup() {
-  const {register,handleSubmit,formState} = useForm<SignupFormData>({
-    resolver : zodResolver(signupSchema)
+  const {register,handleSubmit,formState:{errors}} = useForm<SignupFormData>({
+    resolver : zodResolver(signupSchema),mode : "onChange"
   })
 
   
 
   function onSubmit(data:SignupFormData) {
     console.log(data)
+    
   }
   return (
     <div className="signup-container">
@@ -25,24 +26,33 @@ function Signup() {
 
         <p>Register to start blogging</p>
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
 
           <input {...register("name")}
             type="text"
             placeholder="Enter your name"
           />
+          {errors.name && (<p className="errorMessage">{errors.name?.message}</p>)}
 
           <input {...register("email")}
             type="email"
             placeholder="Enter your email"
           />
+          {errors.email && (<p className="errorMessage">{errors.email?.message}</p>)}
 
           <input {...register("password")}
             type="password"
             placeholder="Create password"
           />
+          {errors.password && (<p className="errorMessage">{errors.password?.message}</p>)}
 
-          <button onSubmit={handleSubmit(onSubmit)} type="submit">
+          <input {...register("confirmPassword")}
+            type="password"
+            placeholder="Confirm Your Password"
+          />
+          {errors.confirmPassword && (<p className="errorMessage">{errors.confirmPassword?.message}</p>)}
+
+          <button type="submit">
             Sign Up
           </button>
 

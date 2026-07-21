@@ -67,3 +67,11 @@
     color:#16a34a;
     font-weight:bold;
 }
+
+.signup-card .errorMessage {
+    color: red;
+    text-align: left;
+    font-size: 14px;
+    margin-top: -12px;
+    margin-bottom: 0;
+}
