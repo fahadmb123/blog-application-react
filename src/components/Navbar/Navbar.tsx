@@ -1,7 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { LogOut } from "../../services/AuthService";
+import { toast } from "react-toastify";
+
 
 function Navbar() {
+  const navigate = useNavigate()
+  const handleLogOut = async ()=>{
+    const fetch = await LogOut()
+    if (fetch.did) {
+      toast.success(fetch.message)
+      navigate("/login")
+    } else {
+      toast.error(fetch.message)
+    }
+  }
   return (
     <nav className="navbar">
 
@@ -22,7 +35,7 @@ function Navbar() {
         </li>
 
         <li>
-          <NavLink className='logout' to="/my-blog">Log Out</NavLink>
+          <button onClick={handleLogOut}>Log Out</button>
         </li>
 
       </ul>
