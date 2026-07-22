@@ -7,3 +7,4 @@ const blogCollection = collection(db,"blogs")
 export const addBlog = async (blog:BlogType)=>{
     return await addDoc(blogCollection,blog)
 }
+
