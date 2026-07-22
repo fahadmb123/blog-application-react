@@ -31,3 +31,7 @@ export type BlogFormProps = {
     errors : FieldErrors<BlogFormData>;
     button:string
 }
+export type BlogCardProps = {
+    title: string;
+    description: string;
+}
