@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { LogOut } from "../../services/AuthService";
 import { toast } from "react-toastify";
+import { useUserContext } from "../../context/AuthContext";
 
 
 function Navbar() {
@@ -15,6 +16,7 @@ function Navbar() {
       toast.error(fetch.message)
     }
   }
+  const {user} = useUserContext()
   return (
     <nav className="navbar">
 
@@ -35,7 +37,8 @@ function Navbar() {
         </li>
 
         <li>
-          <button className="logout-btn" onClick={handleLogOut}>Log Out</button>
+          {user && (<button className="logout-btn" onClick={handleLogOut}>Log Out</button>)}
+          
         </li>
 
       </ul>
