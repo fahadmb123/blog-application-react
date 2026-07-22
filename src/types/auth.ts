@@ -17,7 +17,8 @@ export type UserContextType = {
     load:boolean
 }
 
-export type blogType = {
+export type BlogType = {
+    id?:string,
     title : string,
     description : string
 }
