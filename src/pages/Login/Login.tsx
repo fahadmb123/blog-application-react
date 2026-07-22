@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginSchema, type LoginFormData } from '../../validation/authSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-
+import { LoginUser } from '../../services/AuthService';
+import { toast } from 'react-toastify';
 
 
 
@@ -11,10 +12,17 @@ function Login() {
   const {register,handleSubmit,formState:{errors}} = useForm<LoginFormData>({
     resolver : zodResolver(loginSchema),mode : "onChange"
   })
+  const navigate = useNavigate()
 
 
-  function onSubmit(data:LoginFormData) {
-    console.log(data)
+  const onSubmit = async (data:LoginFormData)=>{
+    const fetch = await LoginUser(data)
+
+    if (fetch.did) {
+      navigate("/")
+    }else {
+      toast.error(fetch.message)
+    }
   }
   return (
     <div className="login-container">
