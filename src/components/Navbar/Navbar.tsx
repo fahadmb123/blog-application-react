@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { LogOut } from "../../services/AuthService";
 import { toast } from "react-toastify";
@@ -38,7 +38,7 @@ function Navbar() {
 
         <li>
           {user && (<button className="logout-btn" onClick={handleLogOut}>Log Out</button>)}
-          
+          {!user && (<NavLink className="logout-btn" to="/login">Login</NavLink>)}
         </li>
 
       </ul>
