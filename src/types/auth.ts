@@ -1,5 +1,7 @@
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import type { User as fireBaseUserType} from "firebase/auth";
+import type {UseFormHandleSubmit,UseFormRegister,FieldErrors} from "react-hook-form";
+import type { BlogFormData } from "../validation/blogSchema";
 
 export type User = {
     id?: string,
@@ -21,4 +23,11 @@ export type BlogType = {
     id?:string,
     title : string,
     description : string
+}
+export type BlogFormProps = {
+    handleSubmit : UseFormHandleSubmit<BlogFormData>;
+    onSubmit : (data:BlogFormData)=>void | Promise<void>;
+    register : UseFormRegister<BlogFormData>;
+    errors : FieldErrors<BlogFormData>;
+    button:string
 }
