@@ -35,3 +35,11 @@
     cursor:pointer;
     border-radius:6px;
 }
+
+.addBlog .errorMessage {
+    color: red;
+    text-align: left;
+    font-size: 14px;
+    margin-top: -12px;
+    margin-bottom: 0;
+}

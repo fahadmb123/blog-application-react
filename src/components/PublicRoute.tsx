@@ -7,7 +7,7 @@ export default function PublicRoute({children}:UserProviderProps){
     const {user,load} = useUserContext()
 
     if (load) {
-        console.log("happening...")
+        
         return <h1>Loading ..... </h1>
     }
     if (user) {
