@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 
 
 
+
 function Login() {
   const {register,handleSubmit,formState:{errors}} = useForm<LoginFormData>({
     resolver : zodResolver(loginSchema),mode : "onChange"
@@ -24,6 +25,8 @@ function Login() {
       toast.error(fetch.message)
     }
   }
+
+
   return (
     <div className="login-container">
 

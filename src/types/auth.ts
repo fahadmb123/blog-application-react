@@ -13,5 +13,6 @@ export type UserProviderProps = {
 
 export type UserContextType = {
     user:fireBaseUserType | undefined,
-    setUser:Dispatch<SetStateAction<fireBaseUserType | undefined>>
+    setUser:Dispatch<SetStateAction<fireBaseUserType | undefined>>,
+    load:boolean
 }

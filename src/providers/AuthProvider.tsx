@@ -9,7 +9,7 @@ import { auth } from "../firebase/config";
 
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | undefined>(undefined);
-  
+  const [load,setLoad] = useState(true)
 
   useEffect(()=>{
     const result = onAuthStateChanged(auth,(fireBaseUser)=>{
@@ -18,12 +18,13 @@ export function UserProvider({ children }: UserProviderProps) {
       }else {
         setUser(undefined)
       }
+      setLoad(false)
       return result
     })
   },[])
-  
+
   return (
-    <userContext.Provider value={{user, setUser }}>
+    <userContext.Provider value={{user, setUser,load }}>
       {children}
     </userContext.Provider>
   );

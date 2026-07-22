@@ -4,9 +4,14 @@ import type { UserProviderProps } from "../types/auth";
 
 
 export default function PublicRoute({children}:UserProviderProps){
-    const {user} = useUserContext()
+    const {user,load} = useUserContext()
+
+    if (load) {
+        console.log("happening...")
+        return <h1>Loading ..... </h1>
+    }
     if (user) {
-        return <Navigate to="/login" replace/>
+        return <Navigate to="/" replace/>
     } 
     return <>{children}</>
 }
