@@ -1,16 +1,13 @@
+import { addUser } from "../repositories/userRepository";
 import type { User } from "../types/auth";
 
 
 
 
-export function SignupUser(newUser:User){
+export const SignupUser = async (newUser:User)=>{
     
     
-    //
-    //
-    //
-    //
-    //
-    console.log(newUser)
+    await addUser(newUser)
+    
 
 }
