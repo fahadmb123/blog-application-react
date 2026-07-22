@@ -2,6 +2,7 @@ import type { Dispatch, ReactNode, SetStateAction } from "react";
 
 
 export type User = {
+    id?: string,
     name : string,
     email : string,
     password : string
