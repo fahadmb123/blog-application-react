@@ -9,7 +9,12 @@ import { FirebaseError } from "firebase/app"
 export const addUser = async (newUser:User)=>{
     try {
         const returned = await createUserWithEmailAndPassword(auth,newUser.email,newUser.password)
-        console.log(returned.user)
+        
+        return {
+            did : true,
+            message : "Registered Sucsessfully",
+            user:returned.user
+        }
     } catch (err) {
         if (err instanceof FirebaseError){
             const message = err.code.replace("auth/","").replaceAll("-"," ")
