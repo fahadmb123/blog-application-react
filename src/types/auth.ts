@@ -1,5 +1,5 @@
 import type { Dispatch, ReactNode, SetStateAction } from "react";
-
+import type { User as fireBaseUserType} from "firebase/auth";
 
 export type User = {
     id?: string,
@@ -12,6 +12,6 @@ export type UserProviderProps = {
 };
 
 export type UserContextType = {
-    user:User | undefined,
-    setUser:Dispatch<SetStateAction<User | undefined>>
+    user:fireBaseUserType | undefined,
+    setUser:Dispatch<SetStateAction<fireBaseUserType | undefined>>
 }
