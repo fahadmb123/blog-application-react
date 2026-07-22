@@ -5,18 +5,24 @@ import type {SignupFormData } from "../../validation/authSchema";
 import { signupSchema } from "../../validation/authSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupUser } from "../../services/AuthService";
+import { toast } from "react-toastify";
 //import { useUserContext } from "../../context/AuthContext";
 
 function Signup() {
   const {register,handleSubmit,formState:{errors}} = useForm<SignupFormData>({
     resolver : zodResolver(signupSchema),mode : "onChange"
   })
-  //const {user,setUser} = useUserContext()
+ 
 
   
 
-  function onSubmit(data:SignupFormData) {
-    SignupUser(data)
+  const onSubmit = async (data:SignupFormData)=> {
+    const fetch = await SignupUser(data)
+    if (fetch.did) {
+      toast.success(fetch.message)
+    }else {
+      toast.error(fetch.message)
+    }
   }
   return (
     <div className="signup-container">
