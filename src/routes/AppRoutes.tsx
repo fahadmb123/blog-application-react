@@ -6,17 +6,19 @@ import AddBlog from "../pages/AddBlog/AddBlog";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import Error from "../pages/Error/Error";
+import ProtectedRoute from "../components/ProtectedRoute";
+import PublicRoute from "../components/PublicRoute";
 
 function AppRoutes () {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />}/>
-                <Route path="add-blog" element={<AddBlog />}/>
-                <Route path="my-blog" element={<MyBlog />}/>
+                <Route path="add-blog" element={<ProtectedRoute><AddBlog /></ProtectedRoute>}/>
+                <Route path="my-blog" element={<ProtectedRoute><MyBlog /></ProtectedRoute>}/>
             </Route>
-            <Route path="/login" element={<Login />}/>
-            <Route path="/signup" element={<Signup />}/>
+            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>}/>
+            <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>}/>
             <Route path="*" element={<Error />}/>
         </Routes>
     )
