@@ -1,5 +1,5 @@
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useForm} from "react-hook-form"
 import type {SignupFormData } from "../../validation/authSchema";
 import { signupSchema } from "../../validation/authSchema";
@@ -12,7 +12,7 @@ function Signup() {
   const {register,handleSubmit,formState:{errors}} = useForm<SignupFormData>({
     resolver : zodResolver(signupSchema),mode : "onChange"
   })
- 
+  const navigate = useNavigate()
 
   
 
@@ -20,6 +20,7 @@ function Signup() {
     const fetch = await SignupUser(data)
     if (fetch.did) {
       toast.success(fetch.message)
+      navigate("/login")
     }else {
       toast.error(fetch.message)
     }
