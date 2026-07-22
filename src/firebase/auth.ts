@@ -7,8 +7,7 @@ import { auth } from "../firebase/config"
 
 
 export const addUser = async (newUser:User)=>{
-    return await createUserWithEmailAndPassword(auth,newUser.email,newUser.password)
-    
+    return await createUserWithEmailAndPassword(auth,newUser.email,newUser.password) 
 }
 
 export const loginUser = async (user:User)=>{

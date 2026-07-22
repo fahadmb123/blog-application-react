@@ -8,7 +8,7 @@ import { FirebaseError } from "firebase/app";
 export const SignupUser = async (newUser:User)=>{
     try {
         const fetch = await addUser(newUser)
-        
+        await logOut()
         return {
             did : true,
             message : "Registered Sucsessfully",
