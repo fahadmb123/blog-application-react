@@ -35,11 +35,7 @@ function Signup() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
 
-          <input {...register("name")}
-            type="text"
-            placeholder="Enter your name"
-          />
-          {errors.name && (<p className="errorMessage">{errors.name?.message}</p>)}
+          
 
           <input {...register("email")}
             type="email"

@@ -17,10 +17,6 @@ export const loginSchema = z.object({
 });
 
 export const signupSchema = z.object({
-    name: z
-      .string()
-      .trim()
-      .min(3, "Name must be at least 3 characters"),
 
     email: z
       .string()
