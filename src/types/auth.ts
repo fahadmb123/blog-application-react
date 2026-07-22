@@ -16,3 +16,8 @@ export type UserContextType = {
     setUser:Dispatch<SetStateAction<fireBaseUserType | undefined>>,
     load:boolean
 }
+
+export type blogType = {
+    title : string,
+    description : string
+}
