@@ -42,7 +42,9 @@ function MyBlog() {
       <h1>My Blogs</h1>
 
       {blogs.map((blg)=>(
-        <BlogCard cardId={blg.id} title={blg.title} description={blg.description} />
+        <div className="blog">
+          <BlogCard cardId={blg.id} title={blg.title} description={blg.description} />
+        </div>
       ))}
 
       {needMore && 
