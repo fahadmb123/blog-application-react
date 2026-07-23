@@ -1,5 +1,5 @@
 import type { BlogType } from "../types/auth";
-import {deleteDoc, addDoc ,collection, getDocs,orderBy,query,where,limit,serverTimestamp, startAfter, doc} from "firebase/firestore";
+import {deleteDoc, addDoc ,collection, getDocs,orderBy,query,where,limit,serverTimestamp, startAfter, doc, getDoc} from "firebase/firestore";
 import { db } from "../firebase/config";
 import type { QueryDocumentSnapshot } from "firebase/firestore";
 
@@ -32,4 +32,10 @@ export const getMyBlogs = async (userId:string,lastBlog?:QueryDocumentSnapshot)=
 
 export const deleteBlog = async (blogId:string)=>{
     await deleteDoc(doc(blogCollection,blogId))
+}
+
+
+export const getBlog = async (id:string)=>{
+    const fetch = await getDoc(doc(blogCollection,id))
+    return fetch
 }

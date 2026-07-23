@@ -1,4 +1,4 @@
-import { addBlog, deleteBlog, getMyBlogs } from "../repositories/blogRepository";
+import { addBlog, deleteBlog, getMyBlogs,getBlog } from "../repositories/blogRepository";
 import type { BlogType } from "../types/auth";
 import type { QueryDocumentSnapshot } from "firebase/firestore";
 
@@ -20,4 +20,17 @@ export const loadMyBlogs = async (userId:string,lastBlog?:QueryDocumentSnapshot)
 
 export const handleDelete = async (blogId:string)=>{
     await deleteBlog(blogId)
+}
+
+export const editBlog = async (id:string):Promise<BlogType | null>=>{
+    const fetch = await getBlog(id)
+
+    if (!fetch.exists()) {
+        return null;
+    }
+
+    return {
+        id: fetch.id,
+        ...(fetch.data() as Omit<BlogType, "id">),
+    };
 }

@@ -4,9 +4,11 @@ import type { UserProviderProps } from "../types/auth";
 
 
 export default function ProtectedRoute({children} :UserProviderProps ){
-    const {user} = useUserContext()
+    const {user,load} = useUserContext()
 
-    
+    if (load) {
+        return <h1>Loading..</h1>;
+    }
     if (!user) {
         return <Navigate to="/login" replace/>
     }
