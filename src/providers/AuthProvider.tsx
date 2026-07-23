@@ -19,7 +19,7 @@ export function UserProvider({ children }: UserProviderProps) {
         setUser(undefined)
       }
       setLoad(false)
-      return result
+      return () => result
     })
   },[])
 
