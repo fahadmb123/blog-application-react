@@ -5,6 +5,7 @@ import { loadMyBlogs } from "../../services/BlogService";
 import { useUserContext } from "../../context/AuthContext";
 import type { BlogType } from "../../types/auth";
 import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 
 function MyBlog() {
@@ -13,7 +14,9 @@ function MyBlog() {
   const {user} = useUserContext()
   const [lastBlog,setLastBlog] = useState<QueryDocumentSnapshot<DocumentData> | null>(null)
   const [needMore,setNeedMore] = useState<boolean>(true)
-  
+  const [loading,setLoading] = useState<boolean>(true)
+  const navigate = useNavigate()
+
   useEffect(()=>{
     const work = async ()=>{
       if (!user) return
@@ -23,6 +26,7 @@ function MyBlog() {
       if (fetch.data.length < 10) {
         setNeedMore(false)
       }
+      setLoading(false);
     }
     work()
   },[])
@@ -34,6 +38,14 @@ function MyBlog() {
     if (fetch.data.length < 10) {
       setNeedMore(false)
     }
+    
+  }
+  if (loading) {
+    return (
+      <div className="myBlog">
+        <h1>Loading..</h1>
+      </div>
+    )
   }
 
   return (
@@ -41,14 +53,22 @@ function MyBlog() {
 
       <h1>My Blogs</h1>
 
-      {blogs.map((blg)=>(
+      {blogs && blogs.map((blg)=>(
         <div className="blog">
           <BlogCard setBlogs={setBlogs} cardId={blg.id} title={blg.title} description={blg.description} />
         </div>
       ))}
+      {blogs.length==0 && (
+        <div className="home">
+          <p>There is no Blogs Please Add a  Blog</p>
 
+          <button onClick={()=>{navigate("/add-blog")}}>Add Blog</button>
+        </div>
+      )}
+      
       {needMore && 
       (<div className="view-more">
+        
         <button onClick={viewMore} className="view-btn">
           View More
       </button>
