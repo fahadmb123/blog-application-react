@@ -73,4 +73,8 @@
     font-size: 14px;
     font-weight: 600;
     color: #6b7280;
+    color: #000000;
+}
+.author {
+    color: rgb(255, 39, 39);
 }

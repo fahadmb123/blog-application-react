@@ -20,7 +20,7 @@ export default function BlogCard({title,description,cardId,setBlogs,author}: Blo
         <div className="blog-card">
             {author && (
                 <div className="blog-header">
-                    <h3 className="blog-author">By : {author}</h3>
+                    <h3 className={`blog-author ${author === "You" ? "author" : ""}`}>By : {author}</h3>
                 </div>
             )}
 
