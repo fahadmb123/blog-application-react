@@ -3,8 +3,8 @@ import type { AllBlogsResponse, BlogType } from "../types/auth";
 import type { QueryDocumentSnapshot } from "firebase/firestore";
 
 
-export const newBlog = async (blog:BlogType,userId:string)=>{
-    await addBlog(blog,userId)
+export const newBlog = async (blog:BlogType,userId:string,author:string)=>{
+    await addBlog(blog,userId,author)
     return {message:"Blog added successfully"}
 } 
 

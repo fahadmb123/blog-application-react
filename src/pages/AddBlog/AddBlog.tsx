@@ -24,8 +24,8 @@ function AddBlog() {
       toast.success(fetch.message)
       return 
     }
-    if (!user) return
-    const fetch = await newBlog(data,user?.uid)
+    if (!user || !user.email) return
+    const fetch = await newBlog(data,user?.uid,user?.email)
     toast.success(fetch.message)
     reset()
   }
@@ -47,8 +47,7 @@ function AddBlog() {
     }
     work()
   },[id,reset])
-
-
+  
 
   return (
     <div className="addBlog">

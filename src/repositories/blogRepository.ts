@@ -5,8 +5,8 @@ import type { QueryDocumentSnapshot } from "firebase/firestore";
 
 const blogCollection = collection(db,"blogs")
 
-export const addBlog = async (blog:BlogType,userId:string)=>{
-    const data = {...blog,userId,createdAt:serverTimestamp()}
+export const addBlog = async (blog:BlogType,userId:string,author:string)=>{
+    const data = {...blog,userId,createdAt:serverTimestamp(),author}
     return await addDoc(blogCollection,data)
 }
 

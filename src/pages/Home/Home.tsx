@@ -13,7 +13,7 @@ function Home() {
   const {user} = useUserContext()
   const [lastBlog,setLastBlog] = useState<QueryDocumentSnapshot<DocumentData> | null>(null)
   const [needMore,setNeedMore] = useState<boolean>(true)
-
+  const [loading,setLoading] = useState<boolean>(true)
 
   useEffect(()=>{
     const work = async ()=>{
@@ -23,6 +23,7 @@ function Home() {
       if (result.blogs.length < 10) {
         setNeedMore(false)
       }
+      setLoading(false)
     }
     work()
   },[])
@@ -39,6 +40,15 @@ function Home() {
       
   }
 
+  
+  if (loading) {
+    return (
+      <div className="myBlog">
+        <h1>Loading..</h1>
+      </div>
+    )
+  }
+
   return (
     <div className="home">
       <div className="home-header">
@@ -52,6 +62,7 @@ function Home() {
         {blogs.map((blg) => (
           <div className="blog" >
             <BlogCard
+              author={blg.userId === user?.uid ? "You" : blg.author}
               title={blg.title}
               description={blg.description}
             />

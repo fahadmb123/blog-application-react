@@ -24,7 +24,8 @@ export type BlogType = {
     id?:string,
     title : string,
     description : string,
-    userId?:string
+    userId?:string;
+    author?:string
 }
 export type BlogFormProps = {
     handleSubmit : UseFormHandleSubmit<BlogFormData>;
