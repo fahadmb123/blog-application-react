@@ -10,11 +10,13 @@ function MyBlog() {
   
   const [blogs,setBlogs] = useState<BlogType[]>([])
   const {user} = useUserContext()
+  const [lastBlog,setLastBlog] = useState<BlogType | null>(null)
   useEffect(()=>{
     const work = async ()=>{
       if (!user) return
       const fetch = await getMyBlogs(user?.uid)
-      setBlogs((prev)=>{return [...prev,...fetch]})
+      setBlogs((prev)=>{return [...prev,...fetch.data]})
+      setLastBlog(fetch.lastDoc)
     }
     work()
   },[])

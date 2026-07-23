@@ -11,12 +11,14 @@ export const addBlog = async (blog:BlogType,userId:string)=>{
 
 
 export const getMyBlogs = async (userId:string)=>{
-    const qr = query(blogCollection,orderBy("createdAt","desc"),limit(10),where("userId","==",userId))
+    const qr = query(blogCollection,orderBy("createdAt","desc"),where("userId","==",userId),limit(10))
     const fetch = await getDocs(qr)
+    
     const data = fetch.docs.map((doc)=>{
         return {
             id:doc.id,...doc.data()
         }
     }) as BlogType[]
-    return data
+    const lastDoc = data[data.length-1]
+    return {data,lastDoc}
 }
