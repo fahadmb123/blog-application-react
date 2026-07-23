@@ -15,6 +15,7 @@ function AppRoutes () {
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />}/>
                 <Route path="add-blog" element={<ProtectedRoute><AddBlog /></ProtectedRoute>}/>
+                <Route path="add-blog/:id" element={<ProtectedRoute><AddBlog /></ProtectedRoute>}/>
                 <Route path="my-blog" element={<ProtectedRoute><MyBlog /></ProtectedRoute>}/>
             </Route>
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>}/>

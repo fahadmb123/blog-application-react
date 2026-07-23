@@ -1,10 +1,14 @@
 import "./BlogCard.css";
 import type { BlogCardProps } from "../../types/auth";
 import { handleDelete } from "../../services/BlogService";
+import { useNavigate } from "react-router-dom";
 
 export default function BlogCard({title,description,cardId,setBlogs}: BlogCardProps) {
+    const navigate = useNavigate()
+
+
     function OnEdit(id:string){
-        console.log(id)
+        navigate(`/add-blog/${id}`)
     }
     const onDelete = async (id:string)=>{
         await handleDelete(id)
