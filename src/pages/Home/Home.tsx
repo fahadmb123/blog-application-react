@@ -55,7 +55,7 @@ function Home() {
         <h1>Welcome to Blog Application</h1>
 
         <p>Read amazing blogs from different authors.</p>
-        {blogs.length === 0 && (<p>There are no Blogs Yet</p>)}
+        {blogs.length === 0 && (<p>There are no Blogs Yet Sorry...</p>)}
       </div>
 
       <div className="blog-container">
