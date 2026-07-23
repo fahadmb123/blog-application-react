@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { blogSchema, type BlogFormData} from "../../validation/blogSchema";
 import BlogForm from "../../components/Blog/BlogForm"
 import { toast } from "react-toastify";
-import { editBlog, newBlog } from "../../services/BlogService";
+import { editBlog, handleUpdateBlog, newBlog } from "../../services/BlogService";
 import { useUserContext } from "../../context/AuthContext";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -19,7 +19,11 @@ function AddBlog() {
   
   
   const onSubmit = async (data:BlogFormData)=>{
-    
+    if (id) {
+      const fetch = await handleUpdateBlog(data,id)
+      toast.success(fetch.message)
+      return 
+    }
     if (!user) return
     const fetch = await newBlog(data,user?.uid)
     toast.success(fetch.message)

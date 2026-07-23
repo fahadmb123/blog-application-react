@@ -1,4 +1,4 @@
-import { addBlog, deleteBlog, getMyBlogs,getBlog } from "../repositories/blogRepository";
+import { addBlog, deleteBlog, getMyBlogs,getBlog, updateBlog } from "../repositories/blogRepository";
 import type { BlogType } from "../types/auth";
 import type { QueryDocumentSnapshot } from "firebase/firestore";
 
@@ -33,4 +33,9 @@ export const editBlog = async (id:string):Promise<BlogType | null>=>{
         id: fetch.id,
         ...(fetch.data() as Omit<BlogType, "id">),
     };
+}
+
+export const handleUpdateBlog = async (blog:BlogType,id:string)=>{
+    await updateBlog(blog,id)
+    return {message:"Updated Successfully"}
 }
