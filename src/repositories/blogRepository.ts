@@ -13,5 +13,10 @@ export const addBlog = async (blog:BlogType,userId:string)=>{
 export const getMyBlogs = async (userId:string)=>{
     const qr = query(blogCollection,orderBy("createdAt","desc"),limit(10),where("userId","==",userId))
     const fetch = await getDocs(qr)
-    console.log(fetch)
+    const data = fetch.docs.map((doc)=>{
+        return {
+            id:doc.id,...doc.data()
+        }
+    })
+    return data
 }
