@@ -1,7 +1,7 @@
 import "./MyBlog.css";
 import BlogCard from "../../components/Blog/BlogCard";
 import { useEffect, useState } from "react";
-import { getMyBlogs } from "../../repositories/blogRepository";
+import { loadMyBlogs } from "../../services/BlogService";
 import { useUserContext } from "../../context/AuthContext";
 import type { BlogType } from "../../types/auth";
 import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
@@ -17,7 +17,7 @@ function MyBlog() {
   useEffect(()=>{
     const work = async ()=>{
       if (!user) return
-      const fetch = await getMyBlogs(user?.uid)
+      const fetch = await loadMyBlogs(user?.uid)
       setBlogs((prev)=>{return [...prev,...fetch.data]})
       setLastBlog(fetch.lastDoc)
       if (fetch.data.length < 10) {
@@ -29,7 +29,7 @@ function MyBlog() {
   const viewMore = async ()=>{
     if (!user) return
     if (!lastBlog) return
-    const fetch = await getMyBlogs(user?.uid,lastBlog)
+    const fetch = await loadMyBlogs(user?.uid,lastBlog)
     setBlogs((prev) => [...prev,...fetch.data])
     if (fetch.data.length < 10) {
       setNeedMore(false)
