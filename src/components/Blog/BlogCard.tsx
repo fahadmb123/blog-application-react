@@ -18,6 +18,9 @@ export default function BlogCard({title,description,cardId}: BlogCardProps) {
                 <button className="edit-btn" onClick={()=>{OnEdit(cardId)}}>
                     Edit
                 </button>
+                <button className="edit-btn delete" onClick={()=>{OnEdit(cardId)}}>
+                    Delete
+                </button>
             </div>}
         </div>
     );

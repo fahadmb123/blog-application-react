@@ -44,8 +44,12 @@
     font-size: 14px;
     cursor: pointer;
     transition: 0.25s;
+    margin: 5px;
 }
 
 .edit-btn:hover {
     background: #1d4ed8;
+}
+.delete {
+    background-color: rgb(196, 9, 9);
 }
