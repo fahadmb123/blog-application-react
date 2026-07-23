@@ -5,6 +5,9 @@ export default function BlogCard({title,description,cardId}: BlogCardProps) {
     function OnEdit(id:string){
         console.log(id)
     }
+    function onDelete(id:string) {
+        console.log(id)
+    }
     return (
         <div className="blog-card">
             <h2 className="blog-title">{title}</h2>
@@ -18,7 +21,7 @@ export default function BlogCard({title,description,cardId}: BlogCardProps) {
                 <button className="edit-btn" onClick={()=>{OnEdit(cardId)}}>
                     Edit
                 </button>
-                <button className="edit-btn delete" onClick={()=>{OnEdit(cardId)}}>
+                <button className="edit-btn delete" onClick={()=>{onDelete(cardId)}}>
                     Delete
                 </button>
             </div>}
