@@ -2,7 +2,7 @@ import type { Dispatch, ReactNode, SetStateAction } from "react";
 import type { User as fireBaseUserType} from "firebase/auth";
 import type {UseFormHandleSubmit,UseFormRegister,FieldErrors} from "react-hook-form";
 import type { BlogFormData } from "../validation/blogSchema";
-
+import type { QueryDocumentSnapshot } from "firebase/firestore";
 
 export type User = {
     id?: string,
@@ -37,5 +37,11 @@ export type BlogCardProps = {
     title: string;
     description: string;
     cardId?:string
-    setBlogs:Dispatch<SetStateAction<BlogType[]>>
+    setBlogs?:Dispatch<SetStateAction<BlogType[]>>;
+    author?:string
 }
+
+export type AllBlogsResponse = {
+    blogs: BlogType[];
+    lastDoc: QueryDocumentSnapshot | null;
+};

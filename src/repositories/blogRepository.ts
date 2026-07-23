@@ -43,3 +43,21 @@ export const getBlog = async (id:string)=>{
 export const updateBlog = async (blog:BlogType,id:string)=>{
     await updateDoc(doc(blogCollection,id),{title:blog.title,description:blog.description})
 }
+
+export const getAllDocs = async (lastBlog?:QueryDocumentSnapshot)=>{
+    let qr
+    if (lastBlog) {
+        qr = query(blogCollection,startAfter(lastBlog),limit(10))
+    }else {
+        qr = query(blogCollection,limit(10))
+    }
+
+
+    const fetch = await getDocs(qr)
+    const blogs: BlogType[] = fetch.docs.map((doc) => ({
+        id: doc.id,
+        ...(doc.data() as Omit<BlogType, "id">),
+    }));
+    const lastDoc = fetch.docs[fetch.docs.length - 1];
+    return {lastDoc,blogs}
+}

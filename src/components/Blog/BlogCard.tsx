@@ -3,7 +3,7 @@ import type { BlogCardProps } from "../../types/auth";
 import { handleDelete } from "../../services/BlogService";
 import { useNavigate } from "react-router-dom";
 
-export default function BlogCard({title,description,cardId,setBlogs}: BlogCardProps) {
+export default function BlogCard({title,description,cardId,setBlogs,author}: BlogCardProps) {
     const navigate = useNavigate()
 
 
@@ -11,12 +11,19 @@ export default function BlogCard({title,description,cardId,setBlogs}: BlogCardPr
         navigate(`/add-blog/${id}`)
     }
     const onDelete = async (id:string)=>{
+        if (!setBlogs) return
         await handleDelete(id)
 
         setBlogs((prev)=>prev.filter((blog)=>blog.id !== id))
     }
     return (
         <div className="blog-card">
+            {author && (
+                <div className="blog-header">
+                    <h3 className="blog-author">By : {author}</h3>
+                </div>
+            )}
+
             <h2 className="blog-title">{title}</h2>
 
             <p className="blog-description">

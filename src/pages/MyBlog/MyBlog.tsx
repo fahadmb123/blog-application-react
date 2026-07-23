@@ -35,6 +35,7 @@ function MyBlog() {
     if (!lastBlog) return
     const fetch = await loadMyBlogs(user?.uid,lastBlog)
     setBlogs((prev) => [...prev,...fetch.data])
+    setLastBlog(fetch.lastDoc)
     if (fetch.data.length < 10) {
       setNeedMore(false)
     }

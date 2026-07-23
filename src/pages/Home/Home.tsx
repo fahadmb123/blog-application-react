@@ -1,15 +1,72 @@
 import "./Home.css";
+import BlogCard from "../../components/Blog/BlogCard";
+import { useEffect, useState } from "react";
+import type { BlogType } from "../../types/auth";
+import { allBlogs } from "../../services/BlogService";
+import { useUserContext } from "../../context/AuthContext";
+import type { QueryDocumentSnapshot,DocumentData } from "firebase/firestore";
+//setBlogs={setBlogs} cardId={blg.id} title={blg.title} description={blg.description}
+
 
 function Home() {
+  const [blogs,setBlogs] = useState<BlogType[]>([])
+  const {user} = useUserContext()
+  const [lastBlog,setLastBlog] = useState<QueryDocumentSnapshot<DocumentData> | null>(null)
+  const [needMore,setNeedMore] = useState<boolean>(true)
+
+
+  useEffect(()=>{
+    const work = async ()=>{
+      const result = await allBlogs()
+      setBlogs((prev)=>[...prev,...result.blogs])
+      setLastBlog(result.lastDoc)
+      if (result.blogs.length < 10) {
+        setNeedMore(false)
+      }
+    }
+    work()
+  },[])
+
+
+  const viewMore = async ()=>{
+      if (!lastBlog) return
+      const fetch = await allBlogs(lastBlog)
+      setBlogs((prev) => [...prev,...fetch.blogs])
+      setLastBlog(fetch.lastDoc)
+      if (fetch.blogs.length < 10) {
+        setNeedMore(false)
+      }
+      
+  }
+
   return (
     <div className="home">
-      <h1>Welcome to My Blog</h1>
+      <div className="home-header">
+        <h1>Welcome to Blog Application</h1>
 
-      <p>Read amazing blogs from different authors.</p>
+        <p>Read amazing blogs from different authors.</p>
+        <p>There are no Blogs Yet</p>
+      </div>
 
-      <button>Explore Blogs</button>
-    </div>
-  );
-}
+      <div className="blog-container">
+        {blogs.map((blg) => (
+          <div className="blog" >
+            <BlogCard
+              title={blg.title}
+              description={blg.description}
+            />
+          </div>
+        ))}
+      </div>
+
+      {needMore && (
+        <div className="view-more">
+          <button onClick={viewMore} className="view-btn">
+            View More
+          </button>
+        </div>
+      )}
+</div>
+)}
 
 export default Home;
