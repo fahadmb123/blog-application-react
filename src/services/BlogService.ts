@@ -1,4 +1,4 @@
-import { addBlog, getMyBlogs } from "../repositories/blogRepository";
+import { addBlog, deleteBlog, getMyBlogs } from "../repositories/blogRepository";
 import type { BlogType } from "../types/auth";
 import type { QueryDocumentSnapshot } from "firebase/firestore";
 
@@ -18,4 +18,6 @@ export const loadMyBlogs = async (userId:string,lastBlog?:QueryDocumentSnapshot)
     return fetch
 }
 
-export const handleDelete = async ()=>{}
+export const handleDelete = async (blogId:string)=>{
+    await deleteBlog(blogId)
+}

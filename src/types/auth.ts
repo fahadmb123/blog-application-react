@@ -3,6 +3,7 @@ import type { User as fireBaseUserType} from "firebase/auth";
 import type {UseFormHandleSubmit,UseFormRegister,FieldErrors} from "react-hook-form";
 import type { BlogFormData } from "../validation/blogSchema";
 
+
 export type User = {
     id?: string,
     email : string,
@@ -36,4 +37,5 @@ export type BlogCardProps = {
     title: string;
     description: string;
     cardId?:string
+    setBlogs:Dispatch<SetStateAction<BlogType[]>>
 }

@@ -43,7 +43,7 @@ function MyBlog() {
 
       {blogs.map((blg)=>(
         <div className="blog">
-          <BlogCard cardId={blg.id} title={blg.title} description={blg.description} />
+          <BlogCard setBlogs={setBlogs} cardId={blg.id} title={blg.title} description={blg.description} />
         </div>
       ))}
 

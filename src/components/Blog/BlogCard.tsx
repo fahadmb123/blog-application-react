@@ -1,12 +1,15 @@
 import "./BlogCard.css";
 import type { BlogCardProps } from "../../types/auth";
+import { handleDelete } from "../../services/BlogService";
 
-export default function BlogCard({title,description,cardId}: BlogCardProps) {
+export default function BlogCard({title,description,cardId,setBlogs}: BlogCardProps) {
     function OnEdit(id:string){
         console.log(id)
     }
-    function onDelete(id:string) {
-        console.log(id)
+    const onDelete = async (id:string)=>{
+        await handleDelete(id)
+
+        setBlogs((prev)=>prev.filter((blog)=>blog.id !== id))
     }
     return (
         <div className="blog-card">
