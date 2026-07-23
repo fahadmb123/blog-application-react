@@ -20,7 +20,10 @@ function Navbar() {
   return (
     <nav className="navbar">
 
-      <h2>My Blog</h2>
+      <div className="nav-title">
+        <h2>My Blog </h2>
+        {user && <span className="author-name">By {user.email}</span>}
+      </div>
 
       <ul>
 
