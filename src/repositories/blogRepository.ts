@@ -1,11 +1,11 @@
 import type { BlogType } from "../types/auth";
-import { addDoc ,collection, getDocs,orderBy,query,where,limit} from "firebase/firestore";
+import { addDoc ,collection, getDocs,orderBy,query,where,limit,serverTimestamp} from "firebase/firestore";
 import { db } from "../firebase/config";
 
 const blogCollection = collection(db,"blogs")
 
 export const addBlog = async (blog:BlogType,userId:string)=>{
-    const data = {...blog,userId}
+    const data = {...blog,userId,createdAt:serverTimestamp()}
     return await addDoc(blogCollection,data)
 }
 
@@ -17,6 +17,6 @@ export const getMyBlogs = async (userId:string)=>{
         return {
             id:doc.id,...doc.data()
         }
-    })
+    }) as BlogType[]
     return data
 }

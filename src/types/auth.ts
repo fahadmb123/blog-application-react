@@ -35,4 +35,5 @@ export type BlogFormProps = {
 export type BlogCardProps = {
     title: string;
     description: string;
+    cardId?:string
 }
