@@ -47,9 +47,9 @@ export const updateBlog = async (blog:BlogType,id:string)=>{
 export const getAllDocs = async (lastBlog?:QueryDocumentSnapshot)=>{
     let qr
     if (lastBlog) {
-        qr = query(blogCollection,startAfter(lastBlog),limit(10))
+        qr = query(blogCollection,orderBy("createdAt","desc"),startAfter(lastBlog),limit(10))
     }else {
-        qr = query(blogCollection,limit(10))
+        qr = query(blogCollection,orderBy("createdAt","desc"),limit(10))
     }
 
 
