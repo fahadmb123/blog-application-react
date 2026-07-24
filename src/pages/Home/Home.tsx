@@ -63,6 +63,7 @@ function Home() {
           <div className="blog" >
             <BlogCard
               author={blg.userId === user?.uid ? "You" : blg.author}
+              createdAt={blg.createdAt}
               title={blg.title}
               description={blg.description}
             />

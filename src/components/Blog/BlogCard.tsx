@@ -3,7 +3,7 @@ import type { BlogCardProps } from "../../types/auth";
 import { handleDelete } from "../../services/BlogService";
 import { useNavigate } from "react-router-dom";
 
-export default function BlogCard({title,description,cardId,setBlogs,author}: BlogCardProps) {
+export default function BlogCard({title,description,cardId,setBlogs,author,createdAt}: BlogCardProps) {
     const navigate = useNavigate()
 
 
@@ -18,9 +18,10 @@ export default function BlogCard({title,description,cardId,setBlogs,author}: Blo
     }
     return (
         <div className="blog-card">
-            {author && (
+            {author && createdAt && (
                 <div className="blog-header">
-                    <h3 className={`blog-author ${author === "You" ? "author" : ""}`}>By : {author}</h3>
+                    <h3 className={`blog-author ${author === "You" ? "author" : ""}`}>Created On : {createdAt.toDate().toLocaleString() }</h3>
+                    <h3 className={`blog-author ${author === "You" ? "author" : ""}`}> :---------: By : {author}</h3>
                 </div>
             )}
 
