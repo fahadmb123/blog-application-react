@@ -1,13 +1,16 @@
 import { Routes , Route } from "react-router-dom";
-import Home from "../pages/Home/Home";
+import { lazy } from "react";
 import Layout from "../components/Layout/Layout";
-import MyBlog from "../pages/MyBlog/MyBlog";
-import AddBlog from "../pages/AddBlog/AddBlog";
-import Login from "../pages/Login/Login";
-import Signup from "../pages/Signup/Signup";
-import Error from "../pages/Error/Error";
+
 import ProtectedRoute from "../components/ProtectedRoute";
 import PublicRoute from "../components/PublicRoute";
+
+const Home = lazy(() => import("../pages/Home/Home"));
+const MyBlog = lazy(() => import("../pages/MyBlog/MyBlog"));
+const AddBlog = lazy(() => import("../pages/AddBlog/AddBlog"));
+const Login = lazy(() => import("../pages/Login/Login"));
+const Signup = lazy(() => import("../pages/Signup/Signup"));
+const Error = lazy(() => import("../pages/Error/Error"));
 
 function AppRoutes () {
     return (
