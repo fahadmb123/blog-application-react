@@ -41,7 +41,7 @@ export const getBlog = async (id:string)=>{
 }
 
 export const updateBlog = async (blog:BlogType,id:string)=>{
-    await updateDoc(doc(blogCollection,id),{title:blog.title,description:blog.description})
+    await updateDoc(doc(blogCollection,id),{title:blog.title,description:blog.description,createdAt:serverTimestamp()})
 }
 
 export const getAllDocs = async (lastBlog?:QueryDocumentSnapshot)=>{
